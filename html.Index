@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Shape Detector</title>
+    <style>
+        /* --- CSS Goes Here --- */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007B9E;
+        }
+
+        #result img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Discover Your Face Shape</h1>
+    </header>
+
+    <main>
+        <p>Upload a clear, front-facing photo to analyze your face shape.</p>
+        <input type="file" id="upload" accept="image/*">
+        <br>
+        <button id="analyzeBtn">Analyze</button>
+        <div id="result"></div>
+        <p>Visit my website: <a href="https://whatismyfaceshape.net/" target="_blank">Face Shape Detector</a></p>
+        <p>GitHub Repo: 
+            <a href="https://github.com/gulzar-abbas/Face-Shape-Detector" target="_blank">Face-Shape-Detector</a> | 
+            <a href="https://github.com/gulzar-abbas/" target="_blank">Gulzar Abbas GitHub</a>
+        </p>
+    </main>
+
+    <footer>
+        &copy; 2025 Face Shape Detector
+    </footer>
+
+    <script>
+        // --- JS Goes Here ---
+        document.getElementById('analyzeBtn').addEventListener('click', function() {
+            const fileInput = document.getElementById('upload');
+            const resultDiv = document.getElementById('result');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    resultDiv.innerHTML = `<p>Analyzing face shape...</p><img src="${e.target.result}" alt="Uploaded Image">`;
+                    // Add your face shape detection logic here
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                resultDiv.innerHTML = '<p>Please upload a photo first.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
 
